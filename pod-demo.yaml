@@ -12,7 +12,7 @@ spec:
      image: ikubernetes/myapp:v1
      ports:
        - name: http
-         continerPort: 80
+         containerPort: 80
    - name: busybox
      image: busybox:lastest
      command:

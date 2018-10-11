@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv001
+  labels:
+    name: pv001
+spec:
+  nfs:
+    path: /opt/v1
+    server: 172.16.200.12
+  accessModes: ["ReadWriteMany","ReadWriteOnce",]
+  capacity: 
+    storage:  5Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv002
+  labels:
+    name: pv002
+spec:
+  nfs:
+    path: /opt/v2
+    server: 172.16.200.12
+  accessModes: ["ReadWriteMany","ReadWriteOnce",]
+  capacity: 
+    storage:  10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv003
+  labels:
+    name: pv003
+spec:
+  nfs:
+    path: /opt/v3
+    server: 172.16.200.12
+  accessModes: ["ReadWriteMany","ReadWriteOnce",]
+  capacity: 
+    storage:  2Gi
+

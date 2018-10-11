@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-stateful-svc-demo
+  labels:
+    app:  myapp-stateful-svc-demo
+spec:
+  ports:
+    - port: 80
+      name: web
+  clusterIP:  None
+  selector: 
+    app:  myapp-pod-demo
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: myapp-stateful-demo
+spec:
+  ServiceName:  myapp-stateful-demo
+  replicas: 3
+  selector: 
+    matchLabel:
+      app:  myapp-pod-demo
+  template:
+    metadata:
+      labels:
+        app:  myapp-pod-demo
+    spec:
+      containers:
+        - name: myapp-pod
+          image:  ikubernetes/myapp:v1
+          ports:
+            - containersPort: 80
+              name: web
+          volumeMounts:
+            - name: myapp-volume-demo
+              mountPath:  /usr/share/nginx/html
+          volemeClainTemplates:
+            metadata:
+              name: myapp-data
+            spec:
+              accessModes:  ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage:  5Gi
+                  
+

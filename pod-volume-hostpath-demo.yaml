@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pod-vol-hostpath
+  namespace:  default
+spec:
+  containers:
+    - name: myapp-pod-vol-hostpath
+      image:  ikubernetes/myapp:v1
+      volumeMounts:
+        - name: html
+          mountPaht:  /usr/local/nginx/html
+  volumes:
+    - name: html
+      hostPath: 
+        path: /opt/volumes/vol-hostpath
+        type: DirectoryOrCreate
